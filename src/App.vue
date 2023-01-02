@@ -1,23 +1,28 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+import { ElConfigProvider } from "element-plus";
+import HelloWorld from "./components/HelloWorld.vue";
+
+const zIndex = ref(3000);
+const size = ref("small");
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <el-config-provider :size="size" :z-index="zIndex">
+    <header>
+      <div class="wrapper">
+        <HelloWorld msg="You did it!" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <RouterView />
+  </el-config-provider>
 </template>
 
 <style scoped>
